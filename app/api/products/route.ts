@@ -17,7 +17,7 @@ export async function GET() {
         price: true,
         imageUrl: true,
         category: true,
-        stock: true,
+        stockQty: true,
       },
       orderBy: { createdAt: 'asc' },
     })
