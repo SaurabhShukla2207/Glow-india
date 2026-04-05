@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Recommended Models for an E-commerce App
+
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  name      String?
+  phone     String?
+  
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  
+  orders    Order[]
+  wishlists WishlistItem[]
+  addresses Address[]
+  cart      Cart?
+}
+
+model Address {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String
+  phone     String
+  street    String
+  city      String
+  state     String
+  pincode   String
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Cart {
+  id        String     @id @default(uuid())
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     CartItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model CartItem {
+  id        String   @id @default(uuid())
+  cartId    String
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([cartId, productId])
+}
+
+model WishlistItem {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
+}
+
+model Product {
+  id            String         @id @default(uuid())
+  slug          String         @unique
+  name          String
+  description   String
+  price         Float
+  imageUrl      String?
+  category      String
+  stockQty      Int            @default(0)
+  isActive      Boolean        @default(true)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  
+  OrderItems    OrderItem[]
+  WishlistItems WishlistItem[]
+  CartItems     CartItem[]
+}
+
+model Order {
+  id              String      @id @default(uuid())
+  userId          String
+  user            User        @relation(fields: [userId], references: [id])
+  total           Float
+  status          OrderStatus @default(PENDING)
+  
+  // Permanent Finalized Invoice Stamp
+  shippingName    String?
+  shippingPhone   String?
+  shippingAddress String?
+  shippingCity    String?
+  shippingState   String?
+  shippingPincode String?
+  
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  
+  items           OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Float
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+

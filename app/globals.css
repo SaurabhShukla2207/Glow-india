@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================================================================
+   GLOW INDIA — Design System Tokens
+   All CSS custom properties used by tailwind.config.ts
+   ================================================================ */
+@layer base {
+  :root {
+    /* ── Primary (Sky Blue) ── */
+    --primary: #1DA1F2;
+    --primary-container: #4FC3F7;
+    --on-primary: #ffffff;
+    --on-primary-container: #00344d;
+    --primary-fixed: #b3e5fc;
+    --on-primary-fixed-variant: #01579b;
+
+    /* ── Secondary (Green) ── */
+    --secondary: #7AC142;
+    --secondary-container: #a5d86e;
+    --on-secondary: #ffffff;
+    --on-secondary-container: #1b3a00;
+    --secondary-fixed: #c8f09a;
+
+    /* ── Tertiary (Teal accent) ── */
+    --tertiary: #00BFA5;
+    --tertiary-container: #64D8CB;
+
+    /* ── Error ── */
+    --error: #E53935;
+
+    /* ── Surfaces ── */
+    --background: #FAFCFF;
+    --surface: #FFFFFF;
+    --surface-container: #F1F5F9;
+    --surface-container-low: #F8FAFC;
+    --surface-variant: #E2E8F0;
+
+    /* ── Text ── */
+    --on-surface: #1D2631;
+    --on-surface-variant: #64748B;
+
+    /* ── Outlines ── */
+    --outline: #94A3B8;
+    --outline-variant: #CBD5E1;
+  }
+
+  body {
+    background-color: var(--background);
+    font-family: var(--font-roboto), 'Roboto', sans-serif;
+    color: var(--on-surface);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--primary-container);
+  }
+}
+
+/* ================================================================
+   Material Symbols
+   ================================================================ */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ================================================================
+   Holographic card border
+   ================================================================ */
+.holographic-border {
+  border: 1px solid transparent;
+  background-image: linear-gradient(white, white), linear-gradient(to right, #1DA1F2, #7AC142);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+/* ================================================================
+   Mesh gradient background
+   ================================================================ */
+.mesh-gradient-bg {
+  background: radial-gradient(at 0% 0%, rgba(29, 161, 242, 0.08) 0px, transparent 50%),
+              radial-gradient(at 100% 100%, rgba(122, 193, 66, 0.08) 0px, transparent 50%);
+}
+
+/* ================================================================
+   Login page utility classes
+   ================================================================ */
+.bg-mesh {
+  background:
+    radial-gradient(at 10% 20%, rgba(29,161,242,0.07) 0, transparent 50%),
+    radial-gradient(at 90% 80%, rgba(122,193,66,0.06) 0, transparent 50%),
+    var(--background);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+}
+
+.gradient-blue {
+  background: linear-gradient(135deg, #1DA1F2, #4FC3F7);
+}
+
+.gradient-green {
+  background: linear-gradient(135deg, #7AC142, #a5d86e);
+}
+
+.gradient-text-blue {
+  background: linear-gradient(135deg, #1DA1F2, #4FC3F7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-blue {
+  background: linear-gradient(135deg, #1DA1F2, #4FC3F7);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.15s;
+  box-shadow: 0 4px 14px rgba(29,161,242,0.35);
+}
+.btn-blue:hover {
+  filter: brightness(1.08);
+}
+.btn-blue:active {
+  transform: scale(0.97);
+}
+
+/* ================================================================
+   Font aliases for login page
+   ================================================================ */
+.font-display {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+}
+.font-700 {
+  font-weight: 700;
+}
+.font-800 {
+  font-weight: 800;
+}
+
+/* ================================================================
+   Custom scrollbar for cart drawer
+   ================================================================ */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}

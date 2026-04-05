@@ -1,0 +1,45 @@
+{
+  "name": "glow-india",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "db:seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts",
+    "db:generate": "prisma generate"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "@supabase/ssr": "^0.5.2",
+    "@supabase/supabase-js": "^2.101.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.18.2",
+    "lucide-react": "^0.460.0",
+    "next": "^16.2.2",
+    "razorpay": "^2.9.6",
+    "react": "^18",
+    "react-dom": "^18",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "^20.19.37",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.27",
+    "eslint": "^10.1.0",
+    "eslint-config-next": "^16.2.2",
+    "postcss": "^8",
+    "prisma": "^6.19.3",
+    "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
+  }
+}
