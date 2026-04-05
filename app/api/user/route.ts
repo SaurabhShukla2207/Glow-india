@@ -19,10 +19,6 @@ export async function PUT(request: Request) {
       data: {
         name: name !== undefined ? name : undefined,
         phone: phone !== undefined ? phone : undefined,
-        address: address !== undefined ? address : undefined,
-        city: city !== undefined ? city : undefined,
-        state: state !== undefined ? state : undefined,
-        pincode: pincode !== undefined ? pincode : undefined,
       }
     })
 
